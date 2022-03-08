@@ -1,0 +1,6 @@
+#!/bin/sh
+
+install-autoproj
+bootstrap-project
+install-workspace
+reset-omniorb

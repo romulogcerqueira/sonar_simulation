@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo /etc/init.d/omniorb4-nameserver stop
+sudo rm -f /var/lib/omniorb/*
+sudo /etc/init.d/omniorb4-nameserver start
