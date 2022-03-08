@@ -53,7 +53,7 @@ $ sh bootstrap.sh
 
 Using docker for this repository (optional)
 ==========================
-Optionally, you may choose to build this repository using Docker, for convenience. Follow the instructions [here](https://github.com/romulogcerqueira/docker-sonar_simulation). 
+Optionally, you may choose to build this repository using Docker, for convenience. Follow the instructions [here](https://github.com/romulogcerqueira/sonar_simulation/tree/main/docker). 
 
 How to run the examples
 ==========================
