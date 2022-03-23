@@ -47,8 +47,8 @@ if [ ! "$(docker ps -q -f name=${CONTAINER_NAME}_devel)" ]; then
             --volume="${SONARSIM_PATH}:${HOME}:rw" \
             --volume="/etc/localtime:/etc/localtime:ro" \
             --env="TERM" \
-            --user="${USER}" \
-            --workdir="/home/${USER}" \
+            --user="${USERNAME}" \
+            --workdir="/home/${USERNAME}" \
             --name ${CONTAINER_NAME}_devel \
             --privileged \
             --runtime=nvidia \
