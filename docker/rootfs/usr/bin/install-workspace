@@ -5,4 +5,4 @@ set -e
 cd ~/sonar_simulator/
 . ./env.sh
 aup --no-interactive
-amake
+amake --no-interactive
