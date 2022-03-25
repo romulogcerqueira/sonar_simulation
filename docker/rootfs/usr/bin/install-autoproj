@@ -1,11 +1,16 @@
 #!/bin/sh
 
-AUTOPROJ_INSTALL_URL="https://raw.githubusercontent.com/rock-core/autoproj/master/bin/autoproj_install"
-
-set -e
-
 mkdir -p ~/sonar_simulator/
 cd ~/sonar_simulator/
+set -e
+
+AUTOPROJ_INSTALL_URL="https://raw.githubusercontent.com/rock-core/autoproj/master/bin/autoproj_install"
+
+if [ "$(cat /etc/os-release |  tail -n -1 | cut -d"=" -f2)" = "focal" ]; then
+    PYTHON_EXECUTABLE=/usr/bin/python3
+else
+    PYTHON_EXECUTABLE=/usr/bin/python
+fi
 
 [ -f "autoproj_install" ] || wget -nv ${AUTOPROJ_INSTALL_URL}
 [ -d ".autoproj" ] || { mkdir -p .autoproj; cat <<EOF > .autoproj/config.yml; }
@@ -23,6 +28,15 @@ cxx11: false
 apt_dpkg_update: true
 USE_PYTHON: true
 PYTHONPATH: /usr/bin/python2.7
+python_executable: "${PYTHON_EXECUTABLE}"
+python_version: 2
+prefer_indep_over_os_packages: false
 EOF
 
-ruby autoproj_install --no-interactive
+cat <<EOF > autoproj.gemfile
+source "https://rubygems.org"
+gem "autoproj", github: 'rock-core/autoproj'
+gem "autobuild", github: 'rock-core/autobuild'
+EOF
+
+ruby autoproj_install --no-interactive --gemfile=autoproj.gemfile
